@@ -1,0 +1,60 @@
+plugins {
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "1.4-SNAPSHOT" apply false
+    id "io.github.pacifistmc.forgix" version "1.2.6"
+}
+
+architectury {
+    minecraft = rootProject.minecraft_version
+}
+
+subprojects {
+    apply plugin: "dev.architectury.loom"
+
+    loom {
+        silentMojangMappingsLicense()
+    }
+
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        mappings loom.officialMojangMappings()
+    }
+}
+
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+
+    archivesBaseName = rootProject.mod_id
+    version = "${rootProject.mod_version}+${rootProject.minecraft_version}"
+    group = rootProject.maven_group
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.release = 17
+    }
+
+    java {
+        withSourcesJar()
+    }
+}
+
+forgix {
+    group = "mod.crend.togglesubtitles"
+    mergedJarName = "togglesubtitles-${rootProject.mod_version}.jar"
+    outputDir = "build/libs/merged"
+
+    forge {
+        projectName = "forge"
+        jarLocation = "build/libs/togglesubtitles-${rootProject.mod_version}+${rootProject.minecraft_version}-forge.jar"
+    }
+
+    fabric {
+        projectName = "fabric" // This is the name of the fabric project. If this property is not defined then by default it'll set to "fabric" since that's the name the Architectury Template uses.
+        jarLocation = "build/libs/togglesubtitles-${rootProject.mod_version}+${rootProject.minecraft_version}-fabric.jar"
+    }
+    custom {
+        projectName = "neoforge"
+        jarLocation = "build/libs/togglesubtitles-${rootProject.mod_version}+${rootProject.minecraft_version}-neoforge.jar"
+    }
+}

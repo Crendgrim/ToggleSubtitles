@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "togglesubtitles",
+  "version": "${mod_version}",
+
+  "name": "Toggle Subtitles",
+  "description": "Adds a key bind to toggle subtitles",
+  "authors": [
+    "Crendgrim"
+  ],
+  "contact": {
+  },
+
+  "license": "LGPL-3.0",
+  "icon": "togglesubtitles.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "mod.crend.togglesubtitles.ToggleSubtitlesFabric"
+    ]
+  },
+
+  "depends": {
+    "fabricloader": "${fabric_loader_version_range}",
+    "fabric-api": "${fabric_api_version_range}",
+    "minecraft": "${minecraft_version_range_fabric}"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "togglesubtitles.title": "Toggle Subtitles",
+  "togglesubtitles.toggled_subtitles": "Toggled subtitles %s",
+  "togglesubtitles.enabled": "ON",
+  "togglesubtitles.disabled": "OFF",
+
+  "key.togglesubtitles.toggle-subtitles": "Toggle Subtitles"
+}
